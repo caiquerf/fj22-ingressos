@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.caelum.ingresso.dao.SalaDao;
 import br.com.caelum.ingresso.dao.SessaoDao;
 import br.com.caelum.ingresso.model.Sala;
+import br.com.caelum.ingresso.model.Sessao;
 import br.com.caelum.ingresso.model.form.SalaForm;
 
 /**
@@ -86,6 +87,18 @@ public class SalaController {
 
         Sala sala = salaDao.findOne(id);
         modelAndView.addObject("sala", sala);
+
+        return modelAndView;
+    }
+    
+    @GetMapping("/sessao/{id}/lugares/")
+    public ModelAndView lugaresNaSessao(@PathVariable("id") Integer sessaoId) {
+
+        ModelAndView modelAndView = new ModelAndView("sessao/lugares");
+        
+        Sessao sessao = sessaoDao.findOne(sessaoId);
+        
+        modelAndView.addObject("sessao", sessao);
 
         return modelAndView;
     }
